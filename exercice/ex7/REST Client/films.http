@@ -1,0 +1,43 @@
+@basedUrl = http://localhost:3000
+
+### Read all films
+GET {{basedUrl}}/films
+
+### Read a single film
+GET {{basedUrl}}/films/3
+
+### Read all films with duration upper or equal than 120
+GET {{basedUrl}}/films?minimum-duration=120
+
+### Create a new film
+POST {{basedUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "duration": 178,
+    "budget": 93000000
+}
+
+### Delete a film
+DELETE {{basedUrl}}/films/2
+
+### Update a film
+PATCH {{basedUrl}}/films/3
+Content-Type: application/json
+
+{
+    "title": "The Lord of the Rings: The Return of the King"
+}
+
+### put a film
+PUT {{basedUrl}}/films/3
+Content-Type: application/json
+
+{
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
+}
