@@ -4,7 +4,7 @@
 GET {{basedUrl}}/films
 
 ### Read a single film
-GET {{basedUrl}}/films/2
+GET {{basedUrl}}/films/4
 
 ### Read all films with duration upper or equal than 120
 GET {{basedUrl}}/films?minimum-duration=120
@@ -18,4 +18,26 @@ Content-Type: application/json
     "director": "Peter Jackson",
     "duration": 178,
     "budget": 93000000
+}
+
+### Delete a film
+DELETE {{basedUrl}}/films/2
+
+### Update a film
+PATCH {{basedUrl}}/films/3
+Content-Type: application/json
+
+{
+    "title": "The Lord of the Rings: The Return of the King"
+}
+
+### put a film
+PUT {{basedUrl}}/films/3
+Content-Type: application/json
+
+{
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
 }
