@@ -7,7 +7,7 @@ GET {{basedUrl}}/films
 GET {{basedUrl}}/films/3
 
 ### Read all films with duration upper or equal than 120
-GET {{basedUrl}}/films?minimum-duration=120
+GET {{basedUrl}}/films?minimumduration=120
 
 ### Create a new film
 POST {{basedUrl}}/films
@@ -20,6 +20,18 @@ Content-Type: application/json
     "budget": 93000000
 }
 
+### Create a new film
+POST {{basedUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "game of thrones",
+    "director": "George R. R. Martin",
+    "duration": 119,
+    "budget": 93000000
+}
+
+
 ### Delete a film
 DELETE {{basedUrl}}/films/2
 
@@ -28,7 +40,10 @@ PATCH {{basedUrl}}/films/3
 Content-Type: application/json
 
 {
-    "title": "The Lord of the Rings: The Return of the King"
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
 }
 
 ### put a film
