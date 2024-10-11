@@ -19,7 +19,20 @@ interface Film {
   imageUrl? : string;
 }
 
+enum level {
+  beginner = "beginner",
+  intermediate = "intermediate",
+  advanced = "advanced",
+}
+
+interface dactilographie {
+  id : Number;
+  content : String;
+  level : level;
+}
+
 type NewPizza = Omit<Pizza, "id">;
 type NewFilm = Omit<Film, "id">;
+type NewDactilographie =   Omit<dactilographie, "id">;
 
-export type { Pizza, NewPizza, PizzaToUpdate, Film, NewFilm };
+export type { Pizza, NewPizza, PizzaToUpdate, Film, NewFilm, NewDactilographie };
