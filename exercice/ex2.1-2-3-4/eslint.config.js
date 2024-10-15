@@ -3,6 +3,7 @@ import globals from 'globals'
 import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 import tseslint from 'typescript-eslint'
+import checker  from 'vite-plugin-checker'
 
 export default tseslint.config(
   { ignores: ['dist'] },
@@ -13,7 +14,12 @@ export default tseslint.config(
       ecmaVersion: 2020,
       globals: globals.browser,
     },
-    plugins: {
+    plugins: [react(),
+      checker({ 
+        typescript: true 
+      }),
+    ], 
+    env: {
       'react-hooks': reactHooks,
       'react-refresh': reactRefresh,
     },
