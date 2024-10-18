@@ -3,10 +3,10 @@ interface PageTitleProps {
     title: String;
 }
 
-const PageTitle: React.FC<PageTitleProps> = ({ title }) => {
+const PageTitle: React.FC<PageTitleProps> = (props : PageTitleProps) => {
   return (
     <div>
-      <h1>{title}</h1>
+      <h1>{props.title}</h1>
     </div>
   );
 };
