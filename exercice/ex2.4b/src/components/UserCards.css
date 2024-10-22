@@ -1,0 +1,7 @@
+.user-card--online {
+    color: green;
+}
+
+.user-card--offline{
+    color: red;
+}
