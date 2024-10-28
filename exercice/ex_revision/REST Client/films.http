@@ -1,0 +1,10 @@
+### Read all drinks with File variable
+@basedUrl = http://localhost:3000
+GET {{basedUrl}}/films
+
+### read film with upper duration
+GET {{basedUrl}}/films?minimum-duration=120
+
+### get film by id
+GET {{basedUrl}}/films/2
+
