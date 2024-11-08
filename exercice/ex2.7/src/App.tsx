@@ -1,19 +1,23 @@
 import { useState, SyntheticEvent } from 'react'
 import './App.css'
 import {Film} from './type'
+import FilmMenu from './FilmMenu'
 
 const defaultFilms = [
   {
+    id: 1,
     title: "le bon et le truand",
     director: "Robert DE Niro",
     duration : 120,
   },
   {
+    id : 2,
     title: "Vegan contre carnivores",
     director: "Dumas",
     duration : 121,
   },
   {
+    id : 3,
     title: "Vegetarian",
     director: "chistopher Nolan",
     duration : 122,
@@ -32,15 +36,14 @@ function App() {
   const handleSubmit = (e: SyntheticEvent) => {
     e.preventDefault();
     const newFilm = {
+      id : nextFilmID(films),
       title : titre,
       director : directeur,
       duration : durée,
-      url : lien == "" ? undefined : lien,
-      description : descriptif == "" ? undefined : descriptif,
-      budget : cout == 0 ? undefined : cout
+      url : lien ,
+      description : descriptif ,
+      budget : cout 
     }
-
-  
     setFilms(films.concat(newFilm));
   }
 
@@ -84,6 +87,7 @@ function App() {
 
   return (
     <>
+      <FilmMenu films={films} />
       <div>
          <p>
             la liste des films
@@ -95,7 +99,7 @@ function App() {
           type="text"
           onChange={handletitleChange}
           required
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <label htmlFor="directeur">directeur</label>
           <input 
@@ -103,7 +107,7 @@ function App() {
           type="text"
           onChange={handledirecteurChange}
           required
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <label htmlFor="duration">duration</label>
           <input 
@@ -111,31 +115,28 @@ function App() {
           type="text"
           onChange={handleDurationChange}
           required
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <label htmlFor="url">Url(pas obligatoire)</label>
           <input 
           value={lien}
           type="text"
           onChange={handleUrlChange}
-          
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <label htmlFor="url">description(pas obligatoire)</label>
           <input 
           value={descriptif}
           type="text"
           onChange={handleDescriptionChange}
-          
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <label htmlFor="url">budget(pas obligatoire)</label>
           <input 
           value={cout}
           type="text"
           onChange={handlebudgetChange}
-          
-          style={{ marginBottom: '10px', display: 'block' }}
+          style={{ marginBottom: '10px', display: 'block', marginLeft: '190px' }}
           />
           <button type="submit">Ajouter</button>
         </form>
@@ -143,6 +144,10 @@ function App() {
         
     </>
   )
+}
+
+const  nextFilmID = (films: Film[]) => {
+  return films.reduce((max, film) => Math.max(max, film.id), 0) + 1;
 }
 
 
