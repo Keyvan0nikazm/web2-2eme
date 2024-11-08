@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import sound from "../../assets/sounds/Infecticide-11-Pizza-Spinoza.mp3";
 import DrinkCard from "./DrinkCard";
 import DrinkMenu from "./DrinkMenu";
@@ -36,7 +36,28 @@ const defaultPizzas: Pizza[] = [
 ];
 
 const Main = () => {
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const [isplaying, setIsPlaying] = useState(false);
   const [pizzas, setPizzas] = useState(defaultPizzas);
+
+  const toggleMusic = () => {
+    if (audioRef.current) {
+      if (isplaying) {
+        audioRef.current.pause();
+      } else {
+        audioRef.current.play();
+      }
+      setIsPlaying(!isplaying);
+    }
+  }
+
+  useEffect(() => {
+    return () => {
+      if (audioRef.current) {
+        audioRef.current.pause();
+      }
+    };
+  }, []);
 
   const addPizza = (newPizza: NewPizza) => {
     const pizzaAdded = { ...newPizza, id: nextPizzaId(pizzas) };
@@ -46,14 +67,11 @@ const Main = () => {
   return (
     <main>
       <p>My HomePage</p>
-      <p>
+      <p onClick={toggleMusic}>
         Because we love JS, you can also click on the header to stop / start the
         music ; )
       </p>
-      <audio id="audioPlayer" controls>
-        <source src={sound} type="audio/mpeg" />
-        Your browser does not support the audio element.
-      </audio>
+      <audio ref={audioRef} src={sound} loop />
       <PizzaMenu pizzas={pizzas} />
 
       {/*  The htmlFor attribute in React is equivalent to the for attribute in standard HTML. 
