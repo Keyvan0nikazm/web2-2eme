@@ -8,4 +8,10 @@ interface Film{
     budget?: number;
 }
 
-export type {Film};
+interface Movie{
+    title: string;
+    director: string;
+    description: string;
+}
+
+export type {Film, Movie};
