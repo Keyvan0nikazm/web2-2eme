@@ -7,10 +7,6 @@ interface Dog {
 
 function DogRandom() {
     const [dog, setDog] = useState<Dog | undefined>(undefined)
-      
-    useEffect(() => {
-      fetchImage()
-    }, [])
 
     const fetchImage = async () => {
       try{
@@ -27,13 +23,20 @@ function DogRandom() {
     }
 };
 
+    useEffect(() => {
+      const interval = setInterval(() => {
+      fetchImage()
+      }, 5000);
+      return () => clearInterval(interval);
+    }, [])
+
   
     return (
       <>
-        <h1>Exercice 2.13b</h1>
+        <h1>Exercice 2.14b</h1>
         <h2>Random dog picture</h2>
         <div>
-          {dog && <img src={dog.message} alt="dog" className='pictures' />}
+          {dog && <img src={dog.message} alt="dog" className='pictures'/>}
         </div>
       </>
     )
