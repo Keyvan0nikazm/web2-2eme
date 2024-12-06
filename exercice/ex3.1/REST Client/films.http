@@ -1,0 +1,84 @@
+@basedUrl = http://localhost:3000
+
+### Read all films
+GET {{basedUrl}}/films
+
+### Read a single film
+GET {{basedUrl}}/films/3
+
+### Read all films with duration upper or equal than 120
+GET {{basedUrl}}/films?minimumduration=120
+
+### create a film by using the admin account
+### first login as the admin
+### define a request variable named admin
+# @name admin
+POST {{basedUrl}}/auths/login
+Content-Type: application/json
+
+{
+    "username":"admin",
+    "password":"admin"
+}
+
+### Create a new film
+POST {{basedUrl}}/films
+Content-Type: application/json
+
+{
+    "title": "The Lord of the Rings",
+    "director": "Peter Jackson",
+    "duration": 178,
+    "budget": 93000000
+}
+
+### Create a new film
+POST {{basedUrl}}/films
+Content-Type: application/json
+Authorization: {{admin.response.body.token}}
+
+{
+    "title": "gladiator 2",
+    "director": "Ridley Scott",
+    "duration": 148,
+    "budget": 93000000
+}
+
+
+### Delete a film
+DELETE {{basedUrl}}/films/3
+Authorization: {{admin.response.body.token}}
+
+### Update a film
+PATCH {{basedUrl}}/films/4
+Content-Type: application/json
+Authorization: {{admin.response.body.token}}
+
+{
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
+}
+
+### Update a film
+PATCH {{basedUrl}}/films/4
+Content-Type: application/json
+
+{
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
+}
+
+### put a film
+PUT {{basedUrl}}/films/3
+Content-Type: application/json
+
+{
+    "title": "Attack of the Clones",
+    "director": "George Lucas",
+    "duration": 142,
+    "budget": 115000000
+}
