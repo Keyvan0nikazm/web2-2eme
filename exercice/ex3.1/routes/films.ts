@@ -4,6 +4,7 @@ import {containsOnlyExpectedKeys} from "../utils/validate";
 import { authorize, isAdmin } from "../utils/auths";
 
 import {
+    readOne,
     CreateFilm,
     DeleteFilm,
     PatchFilm,
@@ -12,6 +13,23 @@ import {
 const router = Router();
 
 const expectedKey = ["title", "director", "duration", "budget", "description", "imageUrl"];
+
+// Read a film by id
+router.get("/:id", (req, res) => {
+    const id = Number(req.params.id);
+  
+    if (isNaN(id)) {
+      return res.sendStatus(400);
+    }
+  
+    const film = readOne(id);
+  
+    if (film === undefined) {
+      return res.sendStatus(404);
+    }
+  
+    return res.send(film);
+  });
 
 router.post("/", authorize, isAdmin, (req, res) => {
     const body: unknown = req.body;

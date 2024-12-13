@@ -26,6 +26,11 @@ const defaultFilms : Film[] = [
     },
 ];
 
+const readOne = (id: number): Film | undefined => {
+    const films = parse(jsonPath, defaultFilms);
+    return films.find((film) => film.id === id);
+  };
+
 const CreateFilm = (newFilm : NewFilm): Film =>{
     const Films = parse(jsonPath, defaultFilms);
     const lastId = defaultFilms[defaultFilms.length - 1].id;
@@ -65,4 +70,4 @@ const PatchFilm = (id: number, updatefilm: Partial<NewFilm>): Film | undefined =
     return film;
 };
 
-export {CreateFilm, DeleteFilm, PatchFilm};
+export {readOne, CreateFilm, DeleteFilm, PatchFilm};
